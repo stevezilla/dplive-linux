@@ -9,21 +9,26 @@
 #include "imx6dl-amherst.dts"
 
 &cpu0 {
-	arm-supply = <&reg_arm>;
-	soc-supply = <&reg_soc>;
-	pu-supply = <&reg_pu>; /* use pu_dummy if VDDSOC share with VDDPU */
+        arm-supply = <&reg_arm>;
+        soc-supply = <&reg_soc>;
 };
 
 &gpc {
-	fsl,ldo-bypass = <0>; /* use ldo-bypass, u-boot will check it and configure */
-	fsl,wdog-reset = <1>; /* watchdog select of reset source */
-	pu-supply = <&reg_pu>; /* ldo-bypass:use pu_dummy if VDDSOC share with VDDPU */
+        /* use ldo-enable, u-boot will check it and configure */
+        fsl,ldo-bypass = <0>;
+        /* watchdog select of reset source */
+        fsl,wdog-reset = <1>;
 };
 
-&gpu {
-	pu-supply = <&reg_pu>; /* ldo-bypass:use pu_dummy if VDDSOC share with VDDPU */
+&wdog1 {
+        status = "okay";
 };
 
-&vpu {
-	pu-supply = <&reg_pu>; /* ldo-bypass:use pu_dummy if VDDSOC share with VDDPU */
+&wdog2 {
+        status = "disabled";
 };
+
+
+
+
+
